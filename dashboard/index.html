@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>JARVIS</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        min-height: 100vh;
+        background:
+            radial-gradient(circle at 50% 40%, #172b3d 0%, #071018 45%, #03070a 100%);
+        color: #e8f7ff;
+        font-family: "Segoe UI", Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .container {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 45px 30px;
+    }
+
+    .title {
+        font-size: 48px;
+        letter-spacing: 14px;
+        font-weight: 300;
+        text-shadow: 0 0 25px rgba(100, 210, 255, .8);
+    }
+
+    .status {
+        margin-top: 10px;
+        color: #6ee7ff;
+        font-size: 14px;
+        letter-spacing: 4px;
+    }
+
+    .core {
+        width: 190px;
+        height: 190px;
+        margin: 55px 0 35px;
+        border-radius: 50%;
+        border: 2px solid rgba(100, 220, 255, .7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow:
+            0 0 20px rgba(70, 210, 255, .35),
+            0 0 70px rgba(70, 210, 255, .2),
+            inset 0 0 45px rgba(70, 210, 255, .15);
+        animation: pulse 2.5s infinite ease-in-out;
+    }
+
+    .core::after {
+        content: "";
+        width: 85px;
+        height: 85px;
+        border-radius: 50%;
+        border: 1px solid rgba(140, 235, 255, .8);
+        box-shadow: 0 0 30px rgba(100, 220, 255, .7);
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.04);
+        }
+    }
+
+    .listening {
+        font-size: 18px;
+        color: #bcefff;
+        margin-bottom: 35px;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(4, 180px);
+        gap: 18px;
+    }
+
+    .card {
+        padding: 20px;
+        border: 1px solid rgba(120, 210, 255, .25);
+        background: rgba(10, 25, 35, .55);
+        border-radius: 15px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 25px rgba(0, 0, 0, .25);
+    }
+
+    .icon {
+        font-size: 27px;
+        margin-bottom: 10px;
+    }
+
+    .label {
+        font-size: 12px;
+        color: #8ba5b3;
+        letter-spacing: 2px;
+    }
+
+    .value {
+        margin-top: 7px;
+        color: #6ee7ff;
+        font-size: 15px;
+    }
+
+    .buttons {
+        margin-top: 30px;
+        display: flex;
+        gap: 15px;
+    }
+
+    button {
+        padding: 13px 25px;
+        border-radius: 10px;
+        border: 1px solid rgba(110, 220, 255, .5);
+        background: rgba(20, 50, 65, .7);
+        color: #dff8ff;
+        cursor: pointer;
+        font-size: 14px;
+        transition: .2s;
+    }
+
+    button:hover {
+        background: rgba(50, 120, 150, .6);
+        box-shadow: 0 0 20px rgba(80, 210, 255, .35);
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 850px) {
+        .cards {
+            grid-template-columns: repeat(2, 180px);
+        }
+
+        .buttons {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="title">JARVIS</div>
+
+<div class="status">
+    ● SISTEMA ONLINE
+</div>
+
+<div class="core"></div>
+
+<div class="listening">
+    🎙️ Aguardando "Hey Jarvis"...
+</div>
+
+<div class="cards">
+
+    <div class="card">
+        <div class="icon">🎙️</div>
+        <div class="label">MICROFONE</div>
+        <div class="value">● ATIVO</div>
+    </div>
+
+    <div class="card">
+        <div class="icon">🧠</div>
+        <div class="label">OLLAMA</div>
+        <div class="value">● ONLINE</div>
+    </div>
+
+    <div class="card">
+        <div class="icon">📡</div>
+        <div class="label">ESP8266</div>
+        <div class="value">● ONLINE</div>
+    </div>
+
+    <div class="card">
+        <div class="icon">🔊</div>
+        <div class="label">PIPER</div>
+        <div class="value">● ATIVO</div>
+    </div>
+
+</div>
+
+<div class="buttons">
+
+    <button onclick="controlarLuz('ligar')">
+        💡 Ligar luz
+    </button>
+
+    <button onclick="controlarLuz('desligar')">
+        💡 Desligar luz
+    </button>
+
+    <button onclick="alert('Reinício será conectado ao Jarvis depois.')">
+        🔄 Reiniciar Jarvis
+    </button>
+
+</div>
+
+</div>
+
+<script> async function controlarLuz(acao) { try { const resposta = await fetch(`/api/luz/${acao}`); const dados = await resposta.json(); if (dados.ok) { alert(dados.mensagem); } else { alert("Erro: " + dados.erro); } } catch (erro) { alert("Não foi possível conectar ao servidor do Jarvis."); } } </script>
+
+</body> </html>

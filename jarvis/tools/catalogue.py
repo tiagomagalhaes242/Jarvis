@@ -84,6 +84,7 @@ def _local_tool_classes() -> tuple[type, ...]:
     from jarvis.tools.local.launch_steam_game import LaunchSteamGameTool
     from jarvis.tools.local.launch_workspace import LaunchWorkspaceTool
     from jarvis.tools.local.lock_screen import LockScreenTool
+    from jarvis.tools.local.light import TurnOnLightTool, TurnOffLightTool
     from jarvis.tools.local.log_tools import CloseLogsTool, ShowLogsTool
     from jarvis.tools.local.notes_tools import (
         AppendToNoteTool,
@@ -131,6 +132,8 @@ def _local_tool_classes() -> tuple[type, ...]:
         LaunchSteamGameTool,
         LaunchWorkspaceTool,
         LockScreenTool,
+        TurnOnLightTool,
+        TurnOffLightTool,
         CloseLogsTool,
         ShowLogsTool,
         AppendToNoteTool,

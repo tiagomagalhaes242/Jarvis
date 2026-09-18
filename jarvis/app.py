@@ -100,7 +100,7 @@ from jarvis.ui.tray import TrayIcon, ensure_system_tray_available
 
 log = logging.getLogger(__name__)
 
-_PIPER_VOICE_NAME = "en_GB-alan-medium"
+_PIPER_VOICE_NAME = "pt-BR-razo-medium"
 _AUDIO_BOOT_TIMEOUT = 120.0  # seconds; first-run model downloads
 _AUDIO_SHUTDOWN_TIMEOUT = 10.0  # seconds
 

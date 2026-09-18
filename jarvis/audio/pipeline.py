@@ -50,6 +50,8 @@ import logging
 import time
 from collections.abc import Callable
 
+
+
 from jarvis.audio.protocols import (
     FRAME_BYTES,
     FRAME_DURATION_MS,
@@ -238,6 +240,7 @@ class AudioPipeline:
         try:
             while True:
                 frame = await self._q_frames.get()
+
                 if self._sm.mode is not Mode.ACTIVE:
                     continue
                 # Feed wake word for ALL states (IDLE, LISTENING, THINKING,
@@ -246,10 +249,13 @@ class AudioPipeline:
                 # mid-response, _handle_wake_detection cancels TTS and
                 # returns to LISTENING. openWakeWord's narrow phoneme set
                 # means TTS output won't self-trigger it.
+
                 wake_result = await self._wake_word.feed(frame)
+
                 if wake_result is not None:
                     await self._handle_wake_detection(wake_result)
                     continue
+
                 cs = self._sm.conversational_state
                 if self._log_wake_during_speaking and cs is ConversationalState.SPEAKING:
                     self._speaking_debug_frame_count += 1

@@ -179,13 +179,13 @@ class STTConfig(_Base):
     # or who have a GPU can switch to base.en (or base/small) in
     # Settings → Models. The .en suffix restricts the model to English only,
     # which shaves another ~10% vs the multilingual variant.
-    model_size: Literal["tiny", "tiny.en", "base", "base.en", "small", "small.en"] = "tiny.en"
-    language: str = "en"
+    model_size: Literal["tiny", "base", "base", "base.en", "small", "small.en"] = "base"
+    language: str = "pt"
     compute_type: Literal["int8", "float16", "float32"] = "int8"
 
 
 class TTSConfig(_Base):
-    voice: str = "en_GB-alan-medium"
+    voice: str = "pt-BR-razo-medium"
     speed: float = Field(default=1.0, gt=0.0, le=4.0)
     volume: float = Field(default=1.0, ge=0.0, le=1.0)
 

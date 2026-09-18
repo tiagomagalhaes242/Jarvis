@@ -59,6 +59,7 @@ def setup_local_tools(
     from jarvis.tools.local.launch_steam_game import LaunchSteamGameTool
     from jarvis.tools.local.launch_workspace import LaunchWorkspaceTool
     from jarvis.tools.local.lock_screen import LockScreenTool
+    from jarvis.tools.local.light import TurnOnLightTool, TurnOffLightTool
     from jarvis.tools.local.open_app import OpenAppTool
     from jarvis.tools.local.open_url import OpenUrlTool
     from jarvis.tools.local.play_youtube_music import PlayYoutubeMusicTool
@@ -107,6 +108,8 @@ def setup_local_tools(
         CloseAppTool(),
         ListDirectoryTool(),
         LockScreenTool(),
+        TurnOnLightTool(),
+        TurnOffLightTool(),
         OpenAppTool(),
         OpenUrlTool(),
         LaunchSteamGameTool(),
