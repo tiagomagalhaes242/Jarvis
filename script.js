@@ -15,7 +15,7 @@ async function enviarComando(comando, texto) {
                     ? "💡 Luz ligada."
                     : "🌙 Luz desligada.";
         } else {
-            message.textContent = "❌ Não consegui falar com o ESP.";
+            message.textContent = "❌ Erro ao falar com o ESP.";
         }
     } catch (erro) {
         console.error(erro);
