@@ -1,27 +1,32 @@
-﻿const ESP_URL = "http://192.168.18.50";
+﻿const BRIDGE_URL = "http://192.168.18.7:5000";
 
 const message = document.getElementById("message");
 
-function enviarComando(comando, texto) {
+async function enviarComando(comando, texto) {
     message.textContent = texto;
 
-    const janela = window.open(
-        `${ESP_URL}/${comando}`,
-        "_blank"
-    );
+    try {
+        const resposta = await fetch(`${BRIDGE_URL}/${comando}`);
+        const dados = await resposta.json();
 
-    // Fecha a aba do ESP depois de enviar o comando
-    setTimeout(() => {
-        if (janela && !janela.closed) {
-            janela.close();
+        if (dados.ok) {
+            message.textContent =
+                comando === "ligar"
+                    ? "💡 Luz ligada."
+                    : "🌙 Luz desligada.";
+        } else {
+            message.textContent = "❌ Não consegui falar com o ESP.";
         }
-    }, 1000);
+    } catch (erro) {
+        console.error(erro);
+        message.textContent = "❌ Não foi possível conectar ao JARVIS.";
+    }
 }
 
 document.getElementById("lightOn").addEventListener("click", () => {
-    enviarComando("ligar", "💡 Luz ligada.");
+    enviarComando("ligar", "Enviando comando...");
 });
 
 document.getElementById("lightOff").addEventListener("click", () => {
-    enviarComando("desligar", "🌙 Luz desligada.");
+    enviarComando("desligar", "Enviando comando...");
 });
