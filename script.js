@@ -1,4 +1,4 @@
-﻿const BRIDGE_URL = "http://192.168.18.7:5000";
+﻿const BRIDGE_URL = "https://mixing-makers-hit-moves.trycloudflare.com";
 
 const message = document.getElementById("message");
 
