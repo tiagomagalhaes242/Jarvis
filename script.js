@@ -5,9 +5,11 @@ const message = document.getElementById("message");
 async function enviarComando(comando, texto) {
     message.textContent = texto;
 
-
     try {
-        const resposta = await fetch(`${BRIDGE_URL}/${comando}`);
+        const resposta = await fetch(
+            `${BRIDGE_URL}/${comando}?t=${Date.now()}`
+        );
+
         const dados = await resposta.json();
 
         if (dados.ok) {
