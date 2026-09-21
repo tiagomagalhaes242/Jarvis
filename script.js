@@ -1,9 +1,10 @@
-﻿const BRIDGE_URL = "https://mixing-makers-hit-moves.trycloudflare.com";
+﻿const BRIDGE_URL = "https://wine-gpl-shaft-seen.trycloudflare.com";
 
 const message = document.getElementById("message");
 
 async function enviarComando(comando, texto) {
     message.textContent = texto;
+
 
     try {
         const resposta = await fetch(`${BRIDGE_URL}/${comando}`);
