@@ -1,4 +1,4 @@
-﻿const BRIDGE_URL = "https://wine-gpl-shaft-seen.trycloudflare.com";
+﻿const BRIDGE_URL = "https://routes-invision-techrepublic-older.trycloudflare.com";
 
 const message = document.getElementById("message");
 
