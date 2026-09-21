@@ -1,6 +1,5 @@
 ﻿const BRIDGE_URL =
-    "https://routes-invision-techrepublic-older.trycloudflare.com";
-
+    "https://similarly-majority-petroleum-agricultural.trycloudflare.com";
 const message = document.getElementById("message");
 const statusText = document.getElementById("statusText");
 
